@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>DojoReads</title>
+</head>
+<body class="text-center d-flex flex-column min-vh-100" style="padding-top: 3.5rem;">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">CodingDojo Books</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/books/new_book">Add Book & Review<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link float-right" href="/logout">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+        <main role="main" class="inner cover">
+            <div class="jumbotron">
+                <div class="container">
+                    <h1 class="cover-heading">Welcome, {{ user_info.first_name }}</h1>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1 class="cover-heading">Recent Book Reviews</h1>
+                        <ul class="list-group-flush">
+                            {% for book in recent_books %}
+                                {% for review in all_reviews %}
+                                    {% if review.book_id.id == book.id %}
+                                    <li class="list-group-item list-group-item-secondary mb-3">
+                                        <div class="d-flex w-100 justify-content-between mt-2">
+                                            <a href="/books/{{ book.id }}" class="lead">{{ book.title }} by: {{ book.author.name }}</a>
+                                            <p class="lead">Rating (1-5): {{ review.rating }}</p>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+    
+                    <div class="col-md-6">
+                        <h1 class="cover-heading">Other Books With Reviews</h1>
+                        <div class="overflow-auto col-md-12 h-50 border">
+                            <ul class="list-group-flush">
+                                {% for book in all_books|dictsort:"created_at" reversed %}
+                                    <li class="list-group-item">
+                                        <a href="/books/{{ book.id }}">{{ book.title }}</a>
+                                    </li>
+                                {% endfor %}                            
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="navbar bg-dark d-flex flex-column">
+            <footer class="footer text-center">
+                <div class="container">
+                    <span class="text-muted">&copy; Coding Dojo 2021</span>
+                </div>
+            </footer>
+        </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>
