@@ -58,7 +58,7 @@ def reg_me(request):
 
         request.session["user"] = new_user.first_name
         request.session["userid"] = new_user.id
-        return redirect('/')
+    return redirect('/')
 
 def success(request):
     context = {

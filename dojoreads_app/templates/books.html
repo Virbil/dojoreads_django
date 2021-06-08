@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+     <!-- Font Awesome Icon Library -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
@@ -53,7 +57,12 @@
                                     <li class="list-group-item list-group-item-secondary mb-3">
                                         <div class="d-flex w-100 justify-content-between mt-2">
                                             <a href="/books/{{ book.id }}" class="lead">{{ book.title }} by: {{ book.author.name }}</a>
-                                            <p class="lead">Rating (1-5): {{ review.rating }}</p>
+                                            <div class="row">
+                                                <p class="lead">Rating (1-5): </p>
+                                                {% for rating in review.rating %}
+                                                <p><span class="fa fa-star checked"></span></p>
+                                                {% endfor %}
+                                            </div>
                                         </div>
                                     </li>
                                     {% endif %}
