@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <title>Add a Book & Review</title>
 </head>
@@ -121,8 +123,8 @@
             </div>
         </main>
 
-        <div class="navbar bg-dark d-flex flex-column">
-            <footer class="footer text-center">
+        <div class="navbar bg-dark d-flex flex-column footer">
+            <footer class="text-center">
                 <div class="container">
                     <span class="text-muted">&copy; Coding Dojo 2021</span>
                 </div>
